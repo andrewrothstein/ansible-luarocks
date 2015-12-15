@@ -1,0 +1,25 @@
+---
+# tasks file for luarocks
+- name: download tgz...
+  get_url: url='{{luarocks_url}}' dest='/tmp/{{luarocks_tgz}}'
+
+- name: unarchive...
+  unarchive: copy=no src='/tmp/{{luarocks_tgz}}' dest='/opt'
+
+- name: configure...
+  command: ./configure --with-lua-include='{{luarocks_lua_include}}'
+  args:
+    chdir: '/opt/{{luarocks_name}}'
+    creates: '/opt/{{luarocks_name}}/config.unix'
+
+- name: make...
+  command: make build
+  args:
+    chdir: '/opt/{{luarocks_name}}'
+    creates: '/opt/{{luarocks_name}}/src/bin/luarocks'
+
+- name: install..
+  command: make install
+  args:
+    chdir: '/opt/{{luarocks_name}}'
+    creates: '/usr/local/bin/luarocks'

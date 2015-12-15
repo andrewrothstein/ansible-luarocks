@@ -1,0 +1,3 @@
+---
+# defaults file for luarocks
+luarocks_ver : '2.2.2'
