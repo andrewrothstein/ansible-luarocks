@@ -1,25 +1,45 @@
 ---
 # tasks file for luarocks
 - name: download tgz...
-  get_url: url='{{luarocks_url}}' dest='/tmp/{{luarocks_tgz}}'
+  become: yes
+  become_user: root
+  get_url: >-
+    url={{luarocks_url}}
+    dest=/tmp/{{luarocks_tgz}}
 
 - name: unarchive...
-  unarchive: copy=no src='/tmp/{{luarocks_tgz}}' dest='/opt'
+  become: yes
+  become_user: root
+  unarchive: >-
+    copy=no
+    src=/tmp/{{luarocks_tgz}}
+    dest=/opt
 
 - name: configure...
-  command: ./configure --with-lua-include='{{luarocks_lua_include}}'
+  become: yes
+  become_user: root
+  command: >-
+    ./configure
+    --with-lua="${SANDBOX}"
+    --prefix="${SANDBOX}"
+    --lua-suffix="jit"
+    --with-lua-include="${SANDBOX}/include/luajit-2.0"
+    --force-config
+    --with-lua-include='{{luarocks_lua_include}}'
   args:
     chdir: '/opt/{{luarocks_name}}'
     creates: '/opt/{{luarocks_name}}/config.unix'
 
 - name: make...
+  become: yes
+  become_user: root
   command: make build
   args:
     chdir: '/opt/{{luarocks_name}}'
-    creates: '/opt/{{luarocks_name}}/src/bin/luarocks'
 
 - name: install..
+  become: yes
+  become_user: root
   command: make install
   args:
     chdir: '/opt/{{luarocks_name}}'
-    creates: '/usr/local/bin/luarocks'
