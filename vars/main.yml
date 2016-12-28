@@ -2,7 +2,7 @@
 # vars file for luarocks
 luarocks_name : luarocks-{{luarocks_ver}}
 luarocks_tgz : '{{luarocks_name}}.tar.gz'
-luarocks_url : '{{luarocks_mirror}}/v{{luarocks_ver}}'
+luarocks_url : '{{luarocks_mirror}}/v{{luarocks_ver}}.tar.gz'
 
 luarocks_lua_include : /usr/local/include/luajit-2.0
 luarocks_src_parent: /opt
