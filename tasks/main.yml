@@ -13,7 +13,7 @@
   unarchive: >-
     copy=no
     src=/tmp/{{luarocks_tgz}}
-    dest=/opt
+    dest={{luarocks_src_parent}}
 
 - name: configure...
   become: yes
@@ -22,24 +22,24 @@
     ./configure
     --with-lua="${SANDBOX}"
     --prefix="${SANDBOX}"
-    --lua-suffix="jit"
+    --lua-suffix=jit
     --with-lua-include="${SANDBOX}/include/luajit-2.0"
     --force-config
-    --with-lua-include='{{luarocks_lua_include}}'
+    --with-lua-include={{luarocks_lua_include}}
   args:
-    chdir: '/opt/{{luarocks_name}}'
-    creates: '/opt/{{luarocks_name}}/config.unix'
+    chdir: '{{luarocks_src_parent}}/{{luarocks_name}}'
+    creates: '{{luarocks_src_parent}}/{{luarocks_name}}/config.unix'
 
 - name: make...
   become: yes
   become_user: root
   command: make build
   args:
-    chdir: '/opt/{{luarocks_name}}'
+    chdir: '{{luarocks_src_parent}}/{{luarocks_name}}'
 
 - name: install..
   become: yes
   become_user: root
   command: make install
   args:
-    chdir: '/opt/{{luarocks_name}}'
+    chdir: '{{luarocks_src_parent}}/{{luarocks_name}}'
