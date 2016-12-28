@@ -20,12 +20,9 @@
   become_user: root
   command: >-
     ./configure
-    --with-lua="${SANDBOX}"
-    --prefix="${SANDBOX}"
     --lua-suffix=jit
-    --with-lua-include="${SANDBOX}/include/luajit-2.0"
+    --lua-version=2.0
     --force-config
-    --with-lua-include={{luarocks_lua_include}}
   args:
     chdir: '{{luarocks_src_parent}}/{{luarocks_name}}'
     creates: '{{luarocks_src_parent}}/{{luarocks_name}}/config.unix'

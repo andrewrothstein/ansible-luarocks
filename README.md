@@ -1,29 +1,31 @@
 andrewrothstein.luarocks
 ===========================
 
-A role for installing Lua rocks
+A role for building LuaRocks atop LuaJIT
 
 Requirements
 ------------
 
-See [meta/main.yml]
+See [meta/main.yml](meta/main.yml)
 
 Role Variables
 --------------
 
-See [defaults/main.yml]
+See [defaults/main.yml](defaults/main.yml)
 
 Dependencies
 ------------
 
-See [meta/main.yml]
+See [meta/main.yml](meta/main.yml)
 
 Example Playbook
 ----------------
 
-    - hosts: servers
-      roles:
-         - andrewrothstein.luarocks
+```yml
+- hosts: servers
+  roles:
+    - andrewrothstein.luarocks
+```
 
 License
 -------
@@ -33,4 +35,4 @@ MIT
 Author Information
 ------------------
 
-Andrew Rothstein andrew.rothstein@gmail.com
+Andrew Rothstein <andrew.rothstein@gmail.com>
