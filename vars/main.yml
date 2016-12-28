@@ -2,6 +2,6 @@
 # vars file for luarocks
 luarocks_name : 'luarocks-{{luarocks_ver}}'
 luarocks_tgz : '{{luarocks_name}}.tar.gz'
-luarocks_url : 'http://keplerproject.github.io/luarocks/releases/{{luarocks_tgz}}'
+luarocks_url : 'https://keplerproject.github.io/luarocks/releases/{{luarocks_tgz}}'
 
 luarocks_lua_include : '/usr/local/include/luajit-2.0'
