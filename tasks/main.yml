@@ -21,23 +21,18 @@
   become_user: root
   command: >-
     ./configure
-    --lua-suffix=jit
-    --lua-version=2.0
-    --force-config
+    --lua-suffix={{luarocks_lua_suffix}}
+    --lua-version={{luarocks_lua_ver}}
+    --with-lua-include={{loarocks_lua_include}}
   args:
     chdir: '{{luarocks_src_parent}}/{{luarocks_name}}'
     creates: '{{luarocks_src_parent}}/{{luarocks_name}}/config.unix'
 
-- name: make...
+- name: make,install...
   become: yes
   become_user: root
-  command: make build
+  command: make build install
   args:
     chdir: '{{luarocks_src_parent}}/{{luarocks_name}}'
+    creates: /usr/local/bin/luarocks
 
-- name: install..
-  become: yes
-  become_user: root
-  command: make install
-  args:
-    chdir: '{{luarocks_src_parent}}/{{luarocks_name}}'
