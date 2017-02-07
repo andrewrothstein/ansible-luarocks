@@ -1,3 +1,4 @@
 ---
 luarocks_mirror: https://github.com/luarocks/luarocks/archive
 luarocks_ver : '2.4.2'
+luarocks_checksum: sha256:0e1ec34583e1b265e0fbafb64c8bd348705ad403fe85967fd05d3a659f74d2e5

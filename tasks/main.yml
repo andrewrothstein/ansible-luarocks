@@ -3,17 +3,18 @@
 - name: download tgz...
   become: yes
   become_user: root
-  get_url: >-
-    url={{luarocks_url}}
-    dest=/tmp/{{luarocks_tgz}}
+  get_url:
+    url: '{{luarocks_url}}'
+    dest: /tmp/{{luarocks_tgz}}
+    checksum: '{{luarocks_checksum}}'
 
 - name: unarchive...
   become: yes
   become_user: root
-  unarchive: >-
-    copy=no
-    src=/tmp/{{luarocks_tgz}}
-    dest={{luarocks_src_parent}}
+  unarchive:
+    copy: no
+    src: /tmp/{{luarocks_tgz}}
+    dest: '{{luarocks_src_parent}}'
 
 - name: configure...
   become: yes
