@@ -23,7 +23,7 @@
     ./configure
     --lua-suffix={{luarocks_lua_suffix}}
     --lua-version={{luarocks_lua_ver}}
-    --with-lua-include={{loarocks_lua_include}}
+    --with-lua-include={{luarocks_lua_include}}
   args:
     chdir: '{{luarocks_src_parent}}/{{luarocks_name}}'
     creates: '{{luarocks_src_parent}}/{{luarocks_name}}/config.unix'
