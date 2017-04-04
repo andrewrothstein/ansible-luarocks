@@ -1,3 +1,4 @@
+[![CircleCI](https://circleci.com/gh/andrewrothstein/ansible-luarocks.svg?style=svg)](https://circleci.com/gh/andrewrothstein/ansible-luarocks)
 andrewrothstein.luarocks
 ===========================
 
