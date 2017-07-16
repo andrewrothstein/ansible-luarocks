@@ -23,7 +23,7 @@ galaxy_info:
 
 dependencies:
   - role: andrewrothstein.unarchive-deps
-    version: v1.0.6
+    version: v1.0.9
   - role: andrewrothstein.luajit
     version: v1.0.2
   
