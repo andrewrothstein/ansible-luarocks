@@ -12,7 +12,7 @@
   become: yes
   become_user: root
   unarchive:
-    remote_src: no
+    remote_src: yes
     src: /tmp/{{luarocks_tgz}}
     dest: '{{luarocks_src_parent}}'
 
