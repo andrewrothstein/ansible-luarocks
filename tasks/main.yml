@@ -35,4 +35,3 @@
   args:
     chdir: '{{luarocks_src_parent}}/{{luarocks_name}}'
     creates: /usr/local/bin/luarocks
-

@@ -1,6 +1,6 @@
-[![CircleCI](https://circleci.com/gh/andrewrothstein/ansible-luarocks.svg?style=svg)](https://circleci.com/gh/andrewrothstein/ansible-luarocks)
 andrewrothstein.luarocks
 ===========================
+[![Build Status](https://travis-ci.org/andrewrothstein/ansible-luarocks.svg?branch=master)](https://travis-ci.org/andrewrothstein/ansible-luarocks)
 
 A role for building LuaRocks atop LuaJIT
 
