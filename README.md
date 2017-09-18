@@ -2,7 +2,7 @@ andrewrothstein.luarocks
 ===========================
 [![Build Status](https://travis-ci.org/andrewrothstein/ansible-luarocks.svg?branch=master)](https://travis-ci.org/andrewrothstein/ansible-luarocks)
 
-A role for building LuaRocks atop LuaJIT
+Builds and installs [LuaRocks](https://luarocks.org/) atop [LuaJIT](http://luajit.org/)
 
 Requirements
 ------------
