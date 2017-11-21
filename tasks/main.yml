@@ -41,3 +41,12 @@
   file:
     path: '{{item}}'
     state: absent
+
+- name: gather installed rocks
+  shell: "{{ luarocks_bin }} list"
+  register: rocks
+
+- name: install rocks
+  shell: "{{ luarocks_bin }} install {{ item }}"
+  with_items: "{{ luarocks_packages }}"
+  when: "'{{ item }}' not in rocks.stdout"
