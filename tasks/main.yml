@@ -19,10 +19,7 @@
 - name: configure...
   become: yes
   become_user: root
-  command: >-
-    ./configure
-    --lua-suffix={{luarocks_lua_suffix}}
-    --with-lua-include={{luarocks_lua_include}}
+  command: ./configure {{ luarocks_configure }}
   args:
     chdir: '{{luarocks_src}}'
     creates: '{{luarocks_src}}/config.unix'
