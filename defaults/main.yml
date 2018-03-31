@@ -1,8 +1,13 @@
 ---
 luarocks_mirror: http://luarocks.github.io/luarocks/releases
-luarocks_ver : '2.4.3'
+luarocks_ver: '2.4.3'
 luarocks_checksum: sha256:4d414d32fed5bb121c72d3ff1280b7f2dc9027a9bc012e41dfbffd5b519b362e
 luarocks_lua_ver: '2.0'
 luarocks_lua_suffix: jit
-
+luarocks_lua_include: /usr/local/include/lua{{luarocks_lua_suffix}}-{{luarocks_lua_ver}}
+luarocks_configure: >-
+  --lua-suffix={{luarocks_lua_suffix}}
+  --with-lua-include={{luarocks_lua_include}}
 luarocks_src_parent: /usr/local/src
+luarocks_bin: luarocks
+luarocks_packages: []
