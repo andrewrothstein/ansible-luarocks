@@ -28,6 +28,6 @@ dependencies:
   - src: andrewrothstein.curl
     version: v1.0.3
   - src: andrewrothstein.unarchive-deps
-    version: v1.0.9
+    version: v1.0.10
   - src: andrewrothstein.luajit
     version: v1.0.4
