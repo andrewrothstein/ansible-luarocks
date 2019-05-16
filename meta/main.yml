@@ -1,33 +1,30 @@
----
+dependencies:
+- role: andrewrothstein.curl
+  version: v1.0.3
+- role: andrewrothstein.unarchive-deps
+  version: v1.0.12
+- role: andrewrothstein.luajit
+  version: v1.0.4
 galaxy_info:
   author: Andrew Rothstein
-  description: luarocks role
   company: BlackRock
+  description: luarocks role
+  galaxy_tags:
+  - lua
+  - luarocks
   license:
-    - MIT
+  - MIT
   min_ansible_version: 2.0
   platforms:
-    - name: EL
-      versions:
-        - all
-    - name: Fedora
-      versions:
-        - all
-    - name: Ubuntu
-      versions:
-        - all
-    - name: Debian
-      versions:
-        - jessie
-
-  galaxy_tags:
-    - lua
-    - luarocks
-
-dependencies:
-  - src: andrewrothstein.curl
-    version: v1.0.3
-  - src: andrewrothstein.unarchive-deps
-    version: v1.0.10
-  - src: andrewrothstein.luajit
-    version: v1.0.4
+  - name: EL
+    versions:
+    - all
+  - name: Fedora
+    versions:
+    - all
+  - name: Ubuntu
+    versions:
+    - all
+  - name: Debian
+    versions:
+    - jessie
