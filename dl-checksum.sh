@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-VER=${1:-3.2.1}
+VER=${1:-3.3.1}
 DIR=~/Downloads
 FILE=luarocks-${VER}.tar.gz
 URL=http://luarocks.org/releases/$FILE
