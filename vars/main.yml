@@ -1,10 +1,12 @@
 ---
 # vars file for luarocks
-luarocks_name : luarocks-{{ luarocks_ver }}
-luarocks_tgz : '{{ luarocks_name }}.tar.gz'
-luarocks_url : '{{ luarocks_mirror }}/{{ luarocks_tgz }}'
+luarocks_name: luarocks-{{ luarocks_ver }}
+luarocks_tgz: '{{ luarocks_name }}.tar.gz'
+luarocks_tmp_tgz: /tmp/{{ luarocks_tgz }}
+luarocks_url: '{{ luarocks_mirror }}/{{ luarocks_tgz }}'
 luarocks_checksum: '{{ luarocks_checksums[luarocks_ver] }}'
 
-luarocks_lua_include : /usr/local/include/lua{{ luarocks_lua_suffix }}-{{ luarocks_lua_ver }}
+luarocks_lua_include: /usr/local/include/lua{{ luarocks_lua_suffix }}-{{ luarocks_lua_ver }}
 
-luarocks_src : '{{ luarocks_src_parent }}/{{ luarocks_name }}'
+luarocks_src: '{{ luarocks_src_parent }}/{{ luarocks_name }}'
+luarocks_target_exe: /usr/local/bin/luarocks

@@ -1,46 +1,51 @@
 ---
 # tasks file for luarocks
-- name: download tgz...
+- name: look for {{ luarocks_target_exe }}...
   become: yes
-  become_user: root
-  get_url:
-    url: '{{ luarocks_url }}'
-    dest: /tmp/{{ luarocks_tgz }}
-    checksum: '{{ luarocks_checksum }}'
-
-- name: unarchive...
-  become: yes
-  become_user: root
-  unarchive:
-    remote_src: yes
-    src: /tmp/{{ luarocks_tgz }}
-    dest: '{{ luarocks_src_parent }}'
-
-- name: configure...
-  become: yes
-  become_user: root
-  command: >-
-    ./configure
-    --lua-suffix={{ luarocks_lua_suffix }}
-    --with-lua-include={{ luarocks_lua_include }}
-  args:
-    chdir: '{{ luarocks_src }}'
-    creates: '{{ luarocks_src }}/config.unix'
-
-- name: make,install...
-  become: yes
-  become_user: root
-  command: make build install
-  args:
-    chdir: '{{ luarocks_src }}'
-    creates: /usr/local/bin/luarocks
-
-- name: cleanup
-  become: yes
-  become_user: root
-  with_items:
-    - /tmp/{{ luarocks_tgz }}
-    - '{{ luarocks_src }}'
-  file:
-    path: '{{ item }}'
-    state: absent
+  stat:
+    path: '{{ luarocks_target_exe }}'
+  changed_when: False
+  register: luarocks_binary
+- when: not luarocks_binary.stat.exists
+  block:
+    - name: download tgz...
+      become: yes
+      become_user: root
+      get_url:
+        url: '{{ luarocks_url }}'
+        dest: '{{ luarocks_tmp_tgz }}'
+        checksum: '{{ luarocks_checksum }}'
+    - name: unarchiving {{ luarocks_tmp_tgz }} to {{ luarocks_src_parent }}'
+      become: yes
+      become_user: root
+      unarchive:
+        remote_src: yes
+        src: '{{ luarocks_tmp_tgz }}'
+        dest: '{{ luarocks_src_parent }}'
+    - name: configuring in {{ luarocks_src }}...
+      become: yes
+      become_user: root
+      command: >-
+        ./configure
+        --lua-suffix={{ luarocks_lua_suffix }}
+        --with-lua-include={{ luarocks_lua_include }}
+      args:
+        chdir: '{{ luarocks_src }}'
+        creates: '{{ luarocks_src }}/config.unix'
+    - name: make build install in {{ luarocks_src }}...
+      become: yes
+      become_user: root
+      command: make build install
+      args:
+        chdir: '{{ luarocks_src }}'
+        creates: '{{ luarocks_target_exe }}'
+  always:
+    - name: cleaning up {{ luarocks_tmp_tgz }} and {{ luarocks_src }}...
+      become: yes
+      become_user: root
+      with_items:
+        - '{{ luarocks_tmp_tgz }}'
+        - '{{ luarocks_src }}'
+      file:
+        path: '{{ item }}'
+        state: absent
