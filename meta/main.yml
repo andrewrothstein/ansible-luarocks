@@ -4,7 +4,7 @@ dependencies:
 - role: andrewrothstein.unarchive-deps
   version: v1.1.5
 - role: andrewrothstein.luajit
-  version: v1.1.0
+  version: v1.1.1
 galaxy_info:
   author: Andrew Rothstein
   company: BlackRock
@@ -30,10 +30,6 @@ galaxy_info:
     versions:
     - 7
     - 8
-  - name: Fedora
-    versions:
-    - 31
-    - 32
   - name: Gentoo
     versions:
     - all
