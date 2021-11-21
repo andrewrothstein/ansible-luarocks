@@ -1,6 +1,6 @@
 andrewrothstein.luarocks
 ===========================
-[![Build Status](https://travis-ci.org/andrewrothstein/ansible-luarocks.svg?branch=master)](https://travis-ci.org/andrewrothstein/ansible-luarocks)
+![Build Status](https://github.com/andrewrothstein/ansible-luarocks/actions/workflows/build.yml/badge.svg)
 
 Builds and installs [LuaRocks](https://luarocks.org/) atop [LuaJIT](http://luajit.org/)
 
