@@ -1,7 +1,7 @@
 ---
 luarocks_mirror: http://luarocks.github.io/luarocks/releases
 
-luarocks_ver: 3.5.0
+luarocks_ver: 3.8.0
 
 luarocks_lua_ver: '2.0'
 luarocks_lua_suffix: jit
@@ -19,3 +19,5 @@ luarocks_checksums:
   '3.4.0': sha256:62ce5826f0eeeb760d884ea8330cd1552b5d432138b8bade0fa72f35badd02d0
   # http://luarocks.org/releases/luarocks-3.5.0.tar.gz
   '3.5.0': sha256:701d0cc0c7e97cc2cf2c2f4068fce45e52a8854f5dc6c9e49e2014202eec9a4f
+  # http://luarocks.org/releases/luarocks-3.8.0.tar.gz
+  '3.8.0': sha256:56ab9b90f5acbc42eb7a94cf482e6c058a63e8a1effdf572b8b2a6323a06d923

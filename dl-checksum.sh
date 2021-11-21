@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e
 DIR=~/Downloads
 
 dl() {
@@ -16,4 +17,4 @@ dl() {
     printf "  '%s': sha256:%s\n" $ver $(sha256sum $lfile | awk '{print $1}')
 }
 
-dl ${1:-3.5.0}
+dl ${1:-3.8.0}
