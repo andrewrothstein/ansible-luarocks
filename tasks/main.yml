@@ -1,29 +1,29 @@
 ---
 # tasks file for luarocks
 - name: look for {{ luarocks_target_exe }}...
-  become: yes
+  become: true
   stat:
     path: '{{ luarocks_target_exe }}'
-  changed_when: False
+  changed_when: false
   register: luarocks_binary
 - when: not luarocks_binary.stat.exists
   block:
     - name: download tgz...
-      become: yes
+      become: true
       become_user: root
       get_url:
         url: '{{ luarocks_url }}'
         dest: '{{ luarocks_tmp_tgz }}'
         checksum: '{{ luarocks_checksum }}'
     - name: unarchiving {{ luarocks_tmp_tgz }} to {{ luarocks_src_parent }}'
-      become: yes
+      become: true
       become_user: root
       unarchive:
-        remote_src: yes
+        remote_src: true
         src: '{{ luarocks_tmp_tgz }}'
         dest: '{{ luarocks_src_parent }}'
     - name: configuring in {{ luarocks_src }}...
-      become: yes
+      become: true
       become_user: root
       command: >-
         ./configure
@@ -33,7 +33,7 @@
         chdir: '{{ luarocks_src }}'
         creates: '{{ luarocks_src }}/config.unix'
     - name: make build install in {{ luarocks_src }}...
-      become: yes
+      become: true
       become_user: root
       command: make build install
       args:
@@ -41,7 +41,7 @@
         creates: '{{ luarocks_target_exe }}'
   always:
     - name: cleaning up {{ luarocks_tmp_tgz }} and {{ luarocks_src }}...
-      become: yes
+      become: true
       become_user: root
       with_items:
         - '{{ luarocks_tmp_tgz }}'
@@ -49,3 +49,11 @@
       file:
         path: '{{ item }}'
         state: absent
+- name: install some rocks..
+  become: true
+  become_user: root
+  with_items: '{{ luarocks_install | default([]) }}'
+  command: >-
+    /usr/local/bin/luarocks install {{ item }}
+  args:
+    creates: /usr/local/lib/luarocks/rocks/{{ item }}
