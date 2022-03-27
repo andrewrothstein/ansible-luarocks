@@ -1,11 +1,8 @@
 ---
 dependencies:
-- role: andrewrothstein.curl
-  version: v1.0.10
-- role: andrewrothstein.unarchive-deps
-  version: v1.2.1
-- role: andrewrothstein.luajit
-  version: v1.1.4
+- andrewrothstein.curl
+- andrewrothstein.unarchive-deps
+- andrewrothstein.luajit
 galaxy_info:
   author: Andrew Rothstein
   company: BlackRock
