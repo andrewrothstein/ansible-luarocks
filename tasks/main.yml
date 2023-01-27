@@ -1,5 +1,11 @@
 ---
 # tasks file for luarocks
+- include_role:
+    name: andrewrothstein.curl
+- include_role:
+    name: andrewrothstein.unarchive-deps
+- include_role:
+    name: andrewrothstein.luajit
 - name: look for {{ luarocks_target_exe }}...
   become: true
   stat:

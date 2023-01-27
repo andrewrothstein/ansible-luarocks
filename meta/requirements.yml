@@ -1,7 +1,7 @@
 ---
 - name: andrewrothstein.curl
-  version: v1.0.14
+  version: v1.0.17
 - name: andrewrothstein.unarchive-deps
-  version: v1.2.3
+  version: v1.2.4
 - name: andrewrothstein.luajit
-  version: v1.1.5
+  version: v1.1.6
