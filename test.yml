@@ -9,7 +9,7 @@
     - role: '{{ playbook_dir }}'
   tasks:
     - name: Executing 'luarocks --version'
-      ansible.builitn.command: luarocks --version
+      ansible.builtin.command: luarocks --version
       changed_when: false
       register: luarocks_test_output
     - name: Output from 'luarocks --version'
