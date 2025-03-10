@@ -1,65 +1,73 @@
 ---
 # tasks file for luarocks
-- include_role:
+- name: Installing andrewrothstein.curl
+  ansible.builtin.include_role:
     name: andrewrothstein.curl
-- include_role:
-    name: andrewrothstein.unarchive-deps
-- include_role:
+- name: Installing andrewrothstein.unarchivedeps
+  ansible.builtin.include_role:
+    name: andrewrothstein.unarchivedeps
+- name: Installing andrewrothstein.luajit
+  ansible.builtin.include_role:
     name: andrewrothstein.luajit
-- name: look for {{ luarocks_target_exe }}...
+- name: Look for {{ luarocks_target_exe }}...
   become: true
-  stat:
+  ansible.builtin.stat:
     path: '{{ luarocks_target_exe }}'
   changed_when: false
   register: luarocks_binary
-- when: not luarocks_binary.stat.exists
+- name: Installing luarocks
+  when: not luarocks_binary.stat.exists
   block:
-    - name: download tgz...
+    - name: Downloading {{ luarocks_url }}
       become: true
       become_user: root
-      get_url:
+      ansible.builtin.get_url:
         url: '{{ luarocks_url }}'
         dest: '{{ luarocks_tmp_tgz }}'
+        mode: '644'
         checksum: '{{ luarocks_checksum }}'
-    - name: unarchiving {{ luarocks_tmp_tgz }} to {{ luarocks_src_parent }}'
+    - name: Unarchiving {{ luarocks_tmp_tgz }} to {{ luarocks_src_parent }}'
       become: true
       become_user: root
-      unarchive:
+      ansible.builtin.unarchive:
         remote_src: true
         src: '{{ luarocks_tmp_tgz }}'
         dest: '{{ luarocks_src_parent }}'
-    - name: configuring in {{ luarocks_src }}...
+    - name: Configuring in {{ luarocks_src }}...
       become: true
       become_user: root
-      command: >-
+      ansible.builtin.command: >-
         ./configure
         --lua-suffix={{ luarocks_lua_suffix }}
         --with-lua-include={{ luarocks_lua_include }}
       args:
         chdir: '{{ luarocks_src }}'
         creates: '{{ luarocks_src }}/config.unix'
-    - name: make build install in {{ luarocks_src }}...
+    - name: Make build install in {{ luarocks_src }}...
       become: true
       become_user: root
-      command: make build install
+      ansible.builtin.command: >-
+        make
+        build
+        install
       args:
         chdir: '{{ luarocks_src }}'
         creates: '{{ luarocks_target_exe }}'
   always:
-    - name: cleaning up {{ luarocks_tmp_tgz }} and {{ luarocks_src }}...
+    - name: Rm -f...
       become: true
       become_user: root
       with_items:
         - '{{ luarocks_tmp_tgz }}'
         - '{{ luarocks_src }}'
-      file:
+      ansible.builtin.file:
         path: '{{ item }}'
         state: absent
-- name: install some rocks..
+- name: Installing some rocks..
   become: true
   become_user: root
   with_items: '{{ luarocks_install | default([]) }}'
-  command: >-
-    /usr/local/bin/luarocks install {{ item }}
+  ansible.builtin.command: >-
+    luarocks install {{ item }}
   args:
     creates: /usr/local/lib/luarocks/rocks/{{ item }}
