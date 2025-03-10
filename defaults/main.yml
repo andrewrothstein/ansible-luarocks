@@ -3,7 +3,7 @@ luarocks_mirror: http://luarocks.github.io/luarocks/releases
 
 luarocks_ver: 3.11.1
 
-luarocks_lua_ver: '2.0'
+luarocks_lua_ver: '2.1'
 luarocks_lua_suffix: jit
 
 luarocks_src_parent: /usr/local/src
