@@ -1,6 +1,6 @@
 ---
 - name: andrewrothstein.curl
-  version: v1.1.1
+  version: v1.1.2
 - name: andrewrothstein.unarchivedeps
   version: 3.0.3
 - name: andrewrothstein.luajit
